@@ -45,9 +45,6 @@ Este repositorio contiene el contrato inteligente `Auction.sol`, desarrollado pa
    - `partialRefund()` para ofertas múltiples.
    - `refund()` debe ser ejecutado por el `owner`.
 
-## ⏲ Tiempo real de finalización
-- Fin estimado (UTC): `2025-06-09 01:11:44 UTC`
-- Timestamp: `1749431504`
 
 ---
 
