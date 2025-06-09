@@ -1,3 +1,7 @@
+/**
+ *Submitted for verification at Etherscan.io on 2025-06-09
+*/
+
 // SPDX-License-Identifier: MIT
 pragma solidity >0.8.0;
 
@@ -18,6 +22,7 @@ contract Auction {
     Bider[] private biders;
     mapping(address => Bider[]) private offers;
     mapping(address => uint256) private balances;
+    mapping(address => bool) private reembolsado;
 
     modifier onlyOwner() {
         require(msg.sender == owner, "No autorizado");
@@ -67,9 +72,14 @@ contract Auction {
 
         for (uint256 i = 0; i < biders.length; i++) {
             address bidderAddr = biders[i].bider;
-            if (bidderAddr != winner.bider && balances[bidderAddr] > 0) {
+            if (
+                bidderAddr != winner.bider &&
+                balances[bidderAddr] > 0 &&
+                !reembolsado[bidderAddr]
+            ) {
                 uint256 refundAmount = (balances[bidderAddr] * 98) / 100;
                 balances[bidderAddr] = 0;
+                reembolsado[bidderAddr] = true;
                 payable(bidderAddr).transfer(refundAmount);
             }
         }
@@ -87,7 +97,7 @@ contract Auction {
         for (uint256 i = 0; i < userOffers.length - 1; i++) {
             totalPrev += userOffers[i].value;
         }
-
+ 
         require(totalPrev > 0, "Nada que reembolsar");
 
         balances[msg.sender] -= totalPrev;
