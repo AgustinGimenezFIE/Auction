@@ -1,6 +1,7 @@
 # 🧾 Auction Smart Contract
 
-This Solidity smart contract implements a timed auction system with enforced bid increments, refund logic, event logging, and security best practices.
+This Solidity smart contract implements a timed auction system with enforced bid increments, refund logic, event logging, and security best practices
+https://sepolia.etherscan.io/address/0x2766f7459583c4ed261aab985ae8fe2594841a42
 
 ## ✅ Features
 
